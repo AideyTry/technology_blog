@@ -9,3 +9,4 @@ app.get('/api/getArticle', (req, res, next) => {
 })
 
 app.listen(3000)
+console.log('成功')

@@ -12,7 +12,7 @@ export default {
       msg: 'This is my blog.'
     }
   },
-  mounted(){
+  mounted () {
     this.getArticle()
   },
   methods: {
