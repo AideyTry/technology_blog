@@ -9,7 +9,7 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'This is my blog.'
+      msg: '汽修'
     }
   },
   mounted () {
@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     getArticle () {
-      this.$http.get('/api/getArticle').then((res) => {
+      this.$http.get('/api/getValue').then((res) => {
         console.log('res=', res)
       })
     }
