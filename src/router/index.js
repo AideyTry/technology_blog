@@ -1,15 +1,25 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-
+import Blog from '@/pages/blog'
+import Writing from '@/pages/writing'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      redirect: {name: 'blog'}
+    },
+    {
+      path: '/blog',
+      name: 'blog',
+      component: Blog
+    },
+    {
+      path: '/writing',
+      name: 'writing',
+      component: Writing
     }
   ]
 })
