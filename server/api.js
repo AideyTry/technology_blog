@@ -13,6 +13,7 @@ const pool = mysql.createPool({
 
 module.exports = {
   getValue(req, res, next) {
+    let id = req.query.id
     pool.getConnection((err, connection) => {
       let sql = sqlMap.getValue
       connection.query(sql, [id], (err, result) => {

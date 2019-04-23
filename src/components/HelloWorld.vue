@@ -9,7 +9,7 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: '汽修'
+      msg: '大大汽修'
     }
   },
   mounted () {
