@@ -1,6 +1,6 @@
-let sqlMap = {
-  getValue: 'SELECT * FROM test WHERE id = 1',
-  setValue: 'UPDATE test SET name = "木头" WHERE id = "2"'
-}
+// let sqlMap = {
+//   getValue: 'SELECT * FROM test WHERE id = 1',
+//   setValue: `UPDATE blog SET name = ${name} WHERE id = ${id}`
+// }
 
-module.exports = sqlMap
+// module.exports = sqlMap

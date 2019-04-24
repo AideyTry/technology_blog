@@ -6,7 +6,12 @@ import App from './App'
 import router from './router'
 
 Vue.config.productionTip = false
-Vue.prototype.$http = axios
+let service = axios.create({
+  headers: {
+    'Content-Type': 'application/json;charset=UTF-8'
+  }
+})
+Vue.prototype.$http = service
 
 /* eslint-disable no-new */
 new Vue({
