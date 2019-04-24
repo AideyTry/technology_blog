@@ -1,14 +1,29 @@
 <template>
-  <div>
+  <div class="writing-wraper">
     <h1>creation</h1>
-    <div>
-      <span>文章</span>
+    <div class="item clearfix">
+      <span class="fl">标题</span>
       <input
+        class="fl"
         type="text"
-        v-model="formData.article"
+        v-model="formData.title"
       >
-      <span>分类</span>
-      <select v-model="formData.classify">
+    </div>
+    <div class="item clearfix">
+      <span class="fl">文章</span>
+      <textarea
+        class="fl"
+        cols="30"
+        rows="10"
+        v-model="formData.article"
+      ></textarea>
+    </div>
+    <div class="item clearfix">
+      <span class="fl">分类</span>
+      <select
+        class="fl"
+        v-model="formData.classify"
+      >
         <option value="js">js</option>
         <option value="vue">vue</option>
         <option value="react">react</option>
@@ -16,7 +31,7 @@
         <option value="flutter">flutter</option>
       </select>
     </div>
-    <button @click="onSave">保存</button>
+    <button class="save" @click="onSave">保存</button>
   </div>
 </template>
 
@@ -26,6 +41,7 @@ export default {
   data () {
     return {
       formData: {
+        title: '',
         article: '',
         classify: ''
       }
@@ -34,6 +50,7 @@ export default {
   methods: {
     setArtical () {
       let params = {
+        title: this.formData.title,
         article: this.formData.article,
         classify: this.formData.classify
       }
@@ -49,4 +66,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/styles/index.scss";
+.writing-wraper {
+  width: 400px;
+  margin: 0 auto;
+  text-align: left;
+  .item {
+    span:first-child {
+      margin-right: 5px;
+    }
+    margin-bottom: 16px;
+  }
+  .save{
+    margin-top: 20px;
+    width: 90px;
+    height:36px;
+    background-color: #00ffff;
+    color: #fff;
+    cursor: pointer;
+  }
+}
 </style>

@@ -13,17 +13,18 @@ const pool = mysql.createPool({
 
 module.exports = {
   getValue (req, res, next) {
-    let id = req.query.id
     pool.getConnection((err, connection) => {
       // let sql = sqlMap.getValue
-      let sql = 'SELECT * FROM test WHERE id = 1'
-      connection.query(sql, [id], (err, result) => {
+      let sql = 'SELECT * FROM blog'
+      connection.query(sql, (err, result) => {
         res.json(result)
         connection.release()
       })
     })
   },
   setValue (req, res, next) {
+    let title = req.body.title
+    console.log('title=', title)
     let article = req.body.article
     let classify = req.body.classify
     pool.getConnection((err, connection) => {
@@ -35,8 +36,8 @@ module.exports = {
         })
       }).then((id) => {
         if (id) {
-          let sql = `INSERT INTO blog(id, article, classify) VALUES (${id}, "${article}", "${classify}")`
-          connection.query(sql, [id, article, classify], (err, result) => {
+          let sql = `INSERT INTO blog(id, title, article, classify) VALUES (${id}, "${title}", "${article}", "${classify}")`
+          connection.query(sql, [id, title, article, classify], (err, result) => {
             res.json(result)
             connection.release()
           })

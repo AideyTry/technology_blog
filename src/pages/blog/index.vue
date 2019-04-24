@@ -19,7 +19,9 @@
       </div>
     </header>
     <section class="main clearfix">
-      <div class="content fl"></div>
+      <div class="content fl">
+        <router-view></router-view>
+      </div>
       <div class="sidebar fr">
         <h2>分类</h2>
         <ul>
@@ -37,10 +39,10 @@ export default {
   data () {
     return {
       menuList: [
-        { title: 'Home' },
-        { title: 'About' },
-        { title: 'Projects' },
-        { title: 'Tools' },
+        { title: 'Home', name: 'blog' },
+        { title: 'About', name: 'about' },
+        { title: 'Projects', name: 'projects' },
+        { title: 'Tools', name: 'tools' },
         { title: ' Github' },
         { title: 'Writing', name: 'writing' }
       ]
