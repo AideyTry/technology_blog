@@ -11,16 +11,11 @@
     </div>
     <div class="item clearfix">
       <span class="fl">文章</span>
-      <!-- <textarea
-        class="fl"
-        cols="30"
-        rows="10"
-        v-model="formData.article"
-      ></textarea> -->
       <mavon-editor
         class="fl"
         v-model="formData.article"
         style="min-height: 600px"
+        @imgAdd="imgAdd"
       ></mavon-editor>
     </div>
     <div class="item clearfix">
@@ -46,6 +41,7 @@
 <script>
 import { mavonEditor } from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
+import { setStore } from '@/utils/store'
 export default {
   name: 'writing',
   components: {
@@ -71,8 +67,22 @@ export default {
         console.log('res=', res)
       })
     },
+    imgAdd (pos, $file) {
+      console.log('pos=', pos)
+      console.log('$file=', $file)
+      let formData = new FormData()
+      formData.append('file', $file)
+      setStore('headersContent', 'multipart/form-data')
+      this.$http.post('/api/upload', formData).then((res) => {
+        console.log('res=', res)
+      })
+    },
     onSave () {
       this.setArtical()
+      this.formData.title = ''
+      this.formData.article = ''
+      this.formData.classify = ''
+      this.$router.push({ name: 'blog' })
     }
   }
 }

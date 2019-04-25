@@ -10,4 +10,8 @@ router.post('/setValue', (req, res, next) => {
   api.setValue(req, res, next)
 })
 
+router.post('/upload', (req , res, next) => {
+  api.upLoadImg(req, res, next)
+})
+
 module.exports = router

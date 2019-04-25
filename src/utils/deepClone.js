@@ -1,4 +1,4 @@
-function getType(obj) {
+function getType (obj) {
   // tostring会返回对应不同的标签的构造函数
   var toString = Object.prototype.toString
   var map = {

@@ -4,11 +4,12 @@ import Vue from 'vue'
 import axios from 'axios'
 import App from './App'
 import router from './router'
-
+import { getStore } from '@/utils/store'
+let headersContent = getStore('headersContent')
 Vue.config.productionTip = false
 let service = axios.create({
   headers: {
-    'Content-Type': 'application/json;charset=UTF-8'
+    'Content-Type': headersContent
   }
 })
 Vue.prototype.$http = service
