@@ -11,12 +11,17 @@
     </div>
     <div class="item clearfix">
       <span class="fl">文章</span>
-      <textarea
+      <!-- <textarea
         class="fl"
         cols="30"
         rows="10"
         v-model="formData.article"
-      ></textarea>
+      ></textarea> -->
+      <mavon-editor
+        class="fl"
+        v-model="formData.article"
+        style="min-height: 600px"
+      ></mavon-editor>
     </div>
     <div class="item clearfix">
       <span class="fl">分类</span>
@@ -31,13 +36,21 @@
         <option value="flutter">flutter</option>
       </select>
     </div>
-    <button class="save" @click="onSave">保存</button>
+    <button
+      class="save"
+      @click="onSave"
+    >保存</button>
   </div>
 </template>
 
 <script>
+import { mavonEditor } from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
 export default {
   name: 'writing',
+  components: {
+    mavonEditor
+  },
   data () {
     return {
       formData: {
@@ -68,7 +81,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/styles/index.scss";
 .writing-wraper {
-  width: 400px;
+  width: 800px;
   margin: 0 auto;
   text-align: left;
   .item {
@@ -77,10 +90,10 @@ export default {
     }
     margin-bottom: 16px;
   }
-  .save{
+  .save {
     margin-top: 20px;
     width: 90px;
-    height:36px;
+    height: 36px;
     background-color: #00ffff;
     color: #fff;
     cursor: pointer;
