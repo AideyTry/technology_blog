@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Blog from '@/pages/blog'
 import Article from '@/pages/blog/article'
+import ArticleDetail from '@/pages/blog/article-detail'
 import About from '@/pages/blog/about'
 import Projects from '@/pages/blog/projects'
 import Tools from '@/pages/blog/tools'
@@ -47,6 +48,11 @@ export default new Router({
       path: '/writing',
       name: 'writing',
       component: Writing
+    },
+    {
+      path: '/article/:id',
+      name: 'article-detail',
+      component: ArticleDetail
     }
   ]
 })

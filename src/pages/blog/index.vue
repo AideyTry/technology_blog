@@ -3,7 +3,7 @@
     <header class="header">
       <div class="info clearfix">
         <div class="fl"></div>
-        <div class="fl">jason博客</div>
+        <div class="fl">jason</div>
       </div>
       <div class="nav clearfix">
         <ul class="clearfix fl">
