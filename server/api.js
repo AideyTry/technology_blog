@@ -1,7 +1,7 @@
 const mysql = require('mysql')
-let Path = require('path')
-const Formidable = require('formidable')
-let FS = require('fs')
+let path = require('path')
+const formidable = require('formidable')
+let fs = require('fs')
 const dbConfig = require('./db.js')
 // const sqlMap = require('./sqlMap.js')
 
@@ -60,20 +60,23 @@ module.exports = {
     })
   },
   upLoadImg (req, res, next) {
-    let From = new Formidable.IncomingForm()
-    let TargetFile = Path.join(__dirname, './Public/')
-    From.uploadDir = TargetFile
-    From.parse(req, (err, fields, files) => {
-      if (err) throw err
-      let FilePath = files.Content.path
-      let NewPath = Path.join(Path.dirname(FilePath), files.Content.name)
-      FS.rename(FilePath, NewPath, (err) => {
-        if(err) throw err
-        let MyJson = {
-          errno: 0,
-          data: ['http://localhost:8088/' + files.Content.name]
-        }
-        res.json(MyJson)
+    let from = new formidable.IncomingForm()
+    let imgPath = path.join(__dirname, '../static/public/')
+    if (!fs.existsSync(imgPath)) {
+      fs.mkdirSync(imgPath)
+    }
+    from.uploadDir = imgPath
+    from.parse(req, function(err, fields, files) {
+      if (err) {
+        throw err
+      }
+      let imgPath = files.file.path
+      let imgName = `mutou.${files.file.type.split("/")[1]}`
+      let data = fs.readFileSync(imgPath)
+      fs.writeFile('../static/public/' + imgName, data, (err) => {
+        if (err) throw err
+        fs.unlink(imgPath, () => {})
+        res.json({ code: 1, path: '/static/public/' + imgName })
       })
     })
   }

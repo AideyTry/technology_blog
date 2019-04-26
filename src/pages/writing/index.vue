@@ -50,7 +50,7 @@
 <script>
 import { mavonEditor } from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
-// import { setStore } from '@/utils/store'
+import { setStore } from '@/utils/store'
 export default {
   name: 'writing',
   components: {
@@ -74,7 +74,7 @@ export default {
         article: this.formData.article,
         classify: this.formData.classify
       }
-      // setStore('headersContent', 'application/json;charset=UTF-8')
+      setStore('headersContent', 'application/json;charset=UTF-8')
       this.$http.post('/api/setValue', JSON.stringify(params)).then((res) => {
         console.log('res=', res)
       })
@@ -82,12 +82,12 @@ export default {
     imgAdd (pos, $file) {
       console.log('pos=', pos)
       console.log('$file=', $file)
-      // let formData = new FormData()
-      // formData.append('file', $file)
-      // setStore('headersContent', 'multipart/form-data')
-      // this.$http.post('/api/upload', formData).then((res) => {
-      //   console.log('res=', res)
-      // })
+      let formData = new FormData()
+      formData.append('file', $file)
+      setStore('headersContent', 'multipart/form-data')
+      this.$http.post('/api/upload', formData).then((res) => {
+        console.log('res=', res)
+      })
     },
     onSave () {
       this.setArtical()
