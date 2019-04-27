@@ -6,7 +6,6 @@ router.get('/getValue', (req, res, next) => {
 })
 
 router.use('/article', (req, res, next) => {
-  console.log('req==========', req.body)
   api.article(req, res, next)
 })
 
