@@ -25,6 +25,7 @@
         v-model="formData.article"
         style="min-height: 600px"
         @imgAdd="imgAdd"
+        ref="md"
       ></mavon-editor>
     </div>
     <div class="item clearfix">
@@ -50,7 +51,8 @@
 <script>
 import { mavonEditor } from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
-import { setStore } from '@/utils/store'
+import { setHeaders } from '@/utils/store'
+import { article, upload } from '@/api/blog'
 export default {
   name: 'writing',
   components: {
@@ -74,9 +76,15 @@ export default {
         article: this.formData.article,
         classify: this.formData.classify
       }
-      setStore('headersContent', 'application/json;charset=UTF-8')
-      this.$http.post('/api/setValue', JSON.stringify(params)).then((res) => {
-        console.log('res=', res)
+      new Promise((resolve) => {
+        setHeaders('application/json;charset=UTF-8')
+        resolve(true)
+      }).then((result) => {
+        if (result) {
+          article(JSON.stringify(params)).then((res) => {
+            console.log('res=', res)
+          })
+        }
       })
     },
     imgAdd (pos, $file) {
@@ -84,9 +92,11 @@ export default {
       console.log('$file=', $file)
       let formData = new FormData()
       formData.append('file', $file)
-      setStore('headersContent', 'multipart/form-data')
-      this.$http.post('/api/upload', formData).then((res) => {
-        console.log('res=', res)
+      setHeaders('multipart/form-data')
+      upload(formData).then((res) => {
+        console.log('res=', res.data)
+        let url = res.data.path
+        this.$refs.md.$img2Url(pos, url)
       })
     },
     onSave () {

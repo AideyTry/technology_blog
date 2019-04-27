@@ -35,11 +35,16 @@ module.exports = {
       })
     })
   },
-  setValue (req, res, next) {
+  article (req, res, next) {
+    // console.log('req============', req)
     let title = req.body.title
     let article = req.body.article
     let description = req.body.description
     let classify = req.body.classify
+    console.log('title===',title)
+    console.log('article===',article)
+    console.log('description===',description)
+    console.log('classify===',classify)
     pool.getConnection((err, connection) => {
       let getBlog = 'select * from blog'
       new Promise((resolve) => {

@@ -18,7 +18,8 @@
 <script>
 // import { mavonEditor } from 'mavon-editor'
 // import 'mavon-editor/dist/css/index.css'
-// import { setStore } from '@/utils/store'
+import { setHeaders } from '@/utils/store'
+import { getValue } from '@/api/blog'
 export default {
   name: 'article-name',
   // components: {
@@ -34,8 +35,8 @@ export default {
   },
   methods: {
     tetArticle () {
-      // setStore('headersContent', 'application/json;charset=UTF-8')
-      this.$http.get('/api/getValue').then((res) => {
+      setHeaders('application/json;charset=UTF-8')
+      getValue().then((res) => {
         console.log('res=', res)
         this.article = res.data
       })

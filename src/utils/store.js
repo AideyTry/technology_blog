@@ -1,6 +1,19 @@
 import {
   validatenull
 } from '@/utils/validate'
+
+import Cookies from 'js-cookie'
+
+const headersContent = 'headers'
+
+export const getHeaders = () => {
+  return Cookies.get(headersContent)
+}
+
+export const setHeaders = (headers) => {
+  return Cookies.set(headersContent, headers)
+}
+
 /**
  * 存储localStorage
  */
