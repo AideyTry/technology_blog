@@ -5,7 +5,7 @@ console.log('process.env.BASE_API===', process.env.BASE_API)
 console.log('headersContent===', headersContent)
 // 创建axios实例
 const fetch = axios.create({
-  baseURL: 'http://106.14.127.10:10086/',
+  baseURL: 'http://106.14.127.10:10087/',
   headers: {
     'Content-Type': headersContent
     // 'Content-Type': 'application/json;charset=UTF-8'
