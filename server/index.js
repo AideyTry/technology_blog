@@ -8,5 +8,5 @@ const routerApi = require('./router')
 app.use('/api', routerApi)
 // 后端api路由
 
-app.listen(10087)
+app.listen(3000)
 console.log('is ok!')
