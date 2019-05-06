@@ -17,4 +17,9 @@ router.post('/upload', (req , res, next) => {
   api.upLoadImg(req, res, next)
 })
 
+// 埋点
+router.post('/setPoint', (req , res, next) => {
+  api.setPoint(req, res, next)
+})
+
 module.exports = router

@@ -67,7 +67,7 @@ module.exports = {
       fs.mkdirSync(imgPath)
     }
     from.uploadDir = imgPath
-    from.parse(req, function(err, fields, files) {
+    from.parse(req, function (err, fields, files) {
       if (err) {
         throw err
       }
@@ -76,8 +76,30 @@ module.exports = {
       let data = fs.readFileSync(imgPath)
       fs.writeFile('../static/public/' + imgName, data, (err) => {
         if (err) throw err
-        fs.unlink(imgPath, () => {})
+        fs.unlink(imgPath, () => { })
         res.json({ code: 1, path: '/static/public/' + imgName })
+      })
+    })
+  },
+  setPoint (req, res, next) {
+    pool.getConnection((err, connection) => {
+      let getBuriedPoint = 'select * from buried_point'
+      let promise1 = new Promise((resolve) => {
+        connection.query(getBuriedPoint, (err, result) => {
+          let id = result.length + 1
+          let count = id
+          resolve({id: id, count: count})
+        })
+      })
+      promise1.then((obj) => {
+        if (obj.id) {
+          let sql = `INSERT INTO buried_point(id, count) VALUES (${obj.id}, ${obj.count})`
+          connection.query(sql, [obj.id, obj.count], (err, result) => {
+            if (err) throw err
+            res.json(result)
+            connection.release()
+          })
+        }
       })
     })
   }
